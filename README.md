@@ -54,6 +54,10 @@ curl -d '{"url":"localhost:6000/1Z"}' -H "Content-Type: application/json" -X POS
 
 ### Запросы к БД и сервису для проверки encode'ра / decode'ра идентификтора
 ```
+psql -h localhost -U nick -d linksdb
+```
+Пароль `pass`
+```
 insert into links values (269, 'http://test1.com');
 ```
 (При наличии ссылки в БД подтягивается текущий ID)
