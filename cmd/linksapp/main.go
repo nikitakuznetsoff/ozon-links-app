@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	dbURL := "postgres://nikita:qwerty@localhost:5432/linksdb"
+	dbURL := "postgres://nick:pass@db:5432/linksdb"
 	conn, err := pgx.Connect(context.Background(), dbURL)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
@@ -22,7 +22,7 @@ func main() {
 	defer conn.Close(context.Background())
 
 	repo := repository.CreateRepo(conn)
-	handler := handlers.LinksHandler{Repo: repo, Host: "localhost"}
+	handler := handlers.LinksHandler{Repo: repo, Host: "localhost:6000"}
 
 	http.HandleFunc("/short", handler.ShortLink)
 	http.HandleFunc("/long", handler.LongLink)

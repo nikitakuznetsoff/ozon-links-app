@@ -1,0 +1,27 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    restart: always
+    container_name: db
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=nick
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=linksdb
+    volumes:
+      - './_sql/:/docker-entrypoint-initdb.d/'
+    tty: true
+
+  app:
+    build:
+      context: '.'
+      dockerfile: App
+    command: "/go/src/github.com/nikitakuznetsoff/ozon-links-app/bin/linksapp"
+    tty: true
+    links:
+      - db
+    container_name: links_app
+    ports:
+      - '6000:6000'

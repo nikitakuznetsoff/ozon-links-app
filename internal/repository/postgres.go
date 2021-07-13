@@ -17,7 +17,7 @@ func CreateRepo(db *pgx.Conn) *PostgreDB {
 func (db *PostgreDB) GetByLink(url string) (*models.Link, error) {
 	link := &models.Link{}
 	err := db.conn.
-		QueryRow(context.Background(), "select id, url from links where link = $1", url).
+		QueryRow(context.Background(), "select id, url from links where url = $1", url).
 		Scan(&link.ID, &link.Address)
 	if err != nil {
 		return nil, err
