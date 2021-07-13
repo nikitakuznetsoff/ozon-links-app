@@ -31,8 +31,6 @@ curl -d '{"url":"http://google.com"}' -H "Content-Type: application/json" -X POS
 '{"url":"localhost:6000/1Z"}'
 ```
 
-
-
 **/long**
 
 Запрос:
@@ -52,6 +50,19 @@ curl -d '{"url":"localhost:6000/1Z"}' -H "Content-Type: application/json" -X POS
 * При неверном формате короткой ссылки
 * При передачи неизвестной короткой ссылки
 * При серверных ошибках
+
+
+### Запросы к БД и сервису для проверки encode'ра / decode'ра идентификтора
+```
+insert into links values (269, 'http://test1.com');
+```
+(При наличии ссылки в БД подтягивается текущий ID)
+```
+curl -d '{"url":"http://test1.com"}' -H "Content-Type: application/json" -X POST http://localhost:6000/short
+```
+```
+curl -d '{"url":"localhost:6000/4l"}' -H "Content-Type: application/json" -X POST http://localhost:6000/long
+```
 
 
 
