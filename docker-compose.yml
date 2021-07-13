@@ -17,7 +17,7 @@ services:
   app:
     build:
       context: '.'
-      dockerfile: App
+      dockerfile: app.Dockerfile
     command: "/go/src/github.com/nikitakuznetsoff/ozon-links-app/bin/linksapp"
     tty: true
     links:
