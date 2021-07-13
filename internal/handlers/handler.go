@@ -6,4 +6,5 @@ import (
 
 type LinksHandler struct {
 	Repo	repository.LinksRepository
+	Host	string
 }

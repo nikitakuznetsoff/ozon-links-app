@@ -22,7 +22,7 @@ func main() {
 	defer conn.Close(context.Background())
 
 	repo := repository.CreateRepo(conn)
-	handler := handlers.LinksHandler{Repo: repo}
+	handler := handlers.LinksHandler{Repo: repo, Host: "localhost"}
 
 	http.HandleFunc("/short", handler.ShortLink)
 	http.HandleFunc("/long", handler.LongLink)

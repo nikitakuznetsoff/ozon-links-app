@@ -5,7 +5,7 @@ import (
 )
 
 type LinksRepository interface {
-	GetByLink(link string) (*models.Link, error)
+	GetByLink(url string) (*models.Link, error)
 	GetByID(id int) (*models.Link, error)
-	Set(link string) (int64, error)
+	Set(url string) error
 }

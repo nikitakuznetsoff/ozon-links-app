@@ -9,6 +9,7 @@ import (
 
 const base = 62
 
+// Encode value to base62 string using ASCII codes
 func Encode(id int) string {
 	var arr []string
 	value := id
@@ -30,21 +31,22 @@ func Encode(id int) string {
 	return b.String()
 }
 
-
+// Decode link to int using ASCII codes
+// Returns error if link contains not valid symbols [A-Za-z0-9]
 func Decode(link string) (int, error) {
 	id := 0
-	for i, v := range link {
+	for i, v := range []byte(link) {
 		symbIndex := 0
 		if v >= 'A' && v <= 'Z' {
 			symbIndex = int(v) - 65 + 10 + 26
 		} else if v >= 'a' && v <= 'z' {
 			symbIndex = int(v) - 97 + 10
 		} else if v >= '0' && v <= '9' {
-			symbIndex = int(v)
+			symbIndex, _ = strconv.Atoi(string(v))
 		} else {
 			return 0, fmt.Errorf("unexpected character %c", v)
 		}
-		id += int(math.Pow(62, float64(len(link) - 1 - i))) * symbIndex
+		id += int(math.Pow(base, float64(len(link) - 1 - i))) * symbIndex
 	}
 	return id, nil
 }
