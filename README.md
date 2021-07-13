@@ -21,28 +21,29 @@
 
 Запрос:
 
-<code>
+```
 curl -d '{"url":"http://google.com"}' -H "Content-Type: application/json" -X POST http://localhost:6000/short
-</code>
+```
 
 Ответ:
 
-<code>
+```
 '{"url":"localhost:6000/1Z"}'
-</code>
+```
+
 
 **/long**
 
 Запрос:
-<code>
+```
 curl -d '{"url":"localhost:6000/1Z"}' -H "Content-Type: application/json" -X POST http://localhost:6000/long
-</code>
+```
 
 Ответ:
 
-<code>
+```
 '{"url":"http://google.com"}'
-</code>
+```
 
 ### Обработка ошибок
 Приложение возвращает ответы с соответствующими кодами при следующих сценариях:
